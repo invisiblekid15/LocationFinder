@@ -1,5 +1,6 @@
 package com.chakhle.www.locationtracker;
 
+<<<<<<< HEAD
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,11 +10,19 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Environment;
+=======
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v7.app.AppCompatActivity;
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,6 +40,26 @@ public class MainActivity extends Activity {
     protected EditText Name;
     protected EditText OTime;
     protected EditText CTime;
+=======
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; //in meters
+    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
+    protected final Button resetPhone = (Button) findViewById(R.id.numberReset);
+    protected final Button resetAdd = (Button) findViewById(R.id.addressReset);
+    protected final Button resetName = (Button) findViewById(R.id.nameReset);
+    protected final Text Phone = (Text) findViewById(R.id.vendorPhone);
+    protected final Text Add = (Text) findViewById(R.id.vendorAddress);
+    protected final Text Name = (Text) findViewById(R.id.vendorName);
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
     static int vendorNumber = 0;
 
     protected LocationManager locationManager;
@@ -41,6 +70,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         resetPhone = (Button) findViewById(R.id.numberReset);
         retrieveLocationButton = (Button) findViewById(R.id.button);
         resetAdd = (Button) findViewById(R.id.addressReset);
@@ -55,6 +85,9 @@ public class MainActivity extends Activity {
         CTime = (EditText) findViewById(R.id.closeTime);
 
 
+=======
+        retrieveLocationButton = (Button) findViewById(R.id.button);
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
@@ -67,7 +100,11 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 Add.setText("");
+=======
+                Add.setTextContent("");
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
             }
         });
 
@@ -75,13 +112,18 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 Name.setText("");
+=======
+                Name.setTextContent("");
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
             }
         });
 
         resetPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 Phone.setText("");
             }
         });
@@ -97,6 +139,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 CTime.setText("");
+=======
+                Phone.setTextContent("");
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
             }
         });
 
@@ -111,6 +156,7 @@ public class MainActivity extends Activity {
     protected void saveCurrentLocation()
     {
         Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
+<<<<<<< HEAD
         if(location == null)
         {
             new AlertDialog.Builder(this).setTitle("Location not given by gps, Please try again.").setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -137,6 +183,29 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this.getApplicationContext(), vendorDetails.class);
                 startActivity(intent);
                 finish();
+=======
+        if(location != null)
+        {
+            try {
+                OutputStreamWriter out = new OutputStreamWriter(openFileOutput("vendor.txt", MODE_APPEND));
+                String phone = Phone.getWholeText().toString();
+                String name = Name.getWholeText().toString();
+                String addr = Add.getWholeText().toString();
+
+                String message = String.format("Saving Current Location \\n Longitude: %1$s \\n Latitude: %2$s",
+                        location.getLongitude(), location.getLatitude());
+                vendorNumber += 1;
+                String adtofile = vendorNumber + ". " + name + "\n" + addr + "\n" + phone + "\n";
+                out.write(adtofile);
+                out.close();
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+            catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+            }
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
         }
     }
 
@@ -163,11 +232,19 @@ public class MainActivity extends Activity {
     }
     public class MyLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
+<<<<<<< HEAD
             /*String message = String.format(
                     "New Location \n Longitude: %1$s \n Latitude: %2$s",
                     location.getLongitude(), location.getLatitude()
             );
             Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();*/
+=======
+            String message = String.format(
+                    "New Location \n Longitude: %1$s \n Latitude: %2$s",
+                    location.getLongitude(), location.getLatitude()
+            );
+            Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
         }
         public void onStatusChanged(String s, int i, Bundle b) {
             Toast.makeText(MainActivity.this, "Provider status changed",

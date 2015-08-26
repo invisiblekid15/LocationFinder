@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/LocationFinder-master.iml" filepath="$PROJECT_DIR$/LocationFinder-master.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/LocationTracker.iml" filepath="$PROJECT_DIR$/LocationTracker.iml" />
+>>>>>>> 2035e49211335ad530b00e43fed4a9b6f5c7fa92
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
